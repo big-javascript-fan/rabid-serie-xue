@@ -7,12 +7,16 @@ module.exports = {
     extend: {},
     backgroundColor:theme=>({
       "mainblack":"#090C11",
-      "pink":"#ff00ff",
-      'share':'#4E1C3D'
+      "white":"#ffffff",
+      'share':'#4E1C3D',
+      'email':'#3C1414',
+      "travel":'#56A631',
+      "true":"#8731A6"
     }),
     borderColor:theme=>({
       "head-b":"#0F1621",
-      'new':'#EF4444'
+      'new':'#EF4444',
+      'email':'#E64A4A'
     }),
     textColor:{
       'color': "#C1BABA",
