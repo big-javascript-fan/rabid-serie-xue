@@ -10,7 +10,7 @@ import { gql } from '@apollo/client';
 const initialValue = {
   data: [],
   kind:[],
-  bb:()=>{}
+  request:()=>{}
 }
 export const InfoContext = createContext(initialValue)
 
@@ -20,7 +20,7 @@ function App(client) {
   const [kind,setkind]=useState([])
   const [tag,settag]=useState([])
 
-  const bb =(tagIds) =>{
+  const request =(tagIds) =>{
     console.log('ligezhenshuai')
     console.log(tagIds)
     client
@@ -58,7 +58,7 @@ function App(client) {
     setdata(result.data.findSeriesByPagination.series)
   });
   }
-useEffect(()=>{bb("")},[])
+useEffect(()=>{request("")},[])
 // useEffect(()=>{
 //   client
 //   .client
@@ -119,7 +119,7 @@ useEffect(()=>{bb("")},[])
 
   return (
     <>
-      <InfoContext.Provider value={{data,kind,bb}}>
+      <InfoContext.Provider value={{data,kind,request}}>
         <div>
             <div className='w-screen bg-mainblack h-auto'>
           <div className='w-11/12 m-0 m-auto'>

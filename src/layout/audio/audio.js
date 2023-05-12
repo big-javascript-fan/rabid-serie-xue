@@ -6,7 +6,7 @@ import i11 from "../../images/Icon11.png"
 import {InfoContext} from "../../App.js"
 
 export default function Audio() {
-    const {data,kind,bb} =useContext(InfoContext)
+    const {data,kind,request} =useContext(InfoContext)
     const [tags,settags]=useState([])
     const [newdata,setnewdata]=useState([])
     const [pagedata,setpagedata]=useState([])
@@ -28,7 +28,7 @@ export default function Audio() {
                 // console.log(tagsbtn[i])
             }
             // console.log(123)
-            bb('')
+            request('')
             return false
         }
        
@@ -60,7 +60,7 @@ export default function Audio() {
         }
         console.log(pagedata,'this is new data')
         // console.log(newdata.join(','))
-        bb(pagedata.join(','))
+        request(pagedata.join(','))
 
     }
 
