@@ -9,7 +9,8 @@ import { gql } from '@apollo/client';
 
 const initialValue = {
   data: [],
-  kind:[]
+  kind:[],
+  bb:()=>{}
 }
 export const InfoContext = createContext(initialValue)
 
@@ -18,8 +19,11 @@ function App(client) {
   const [data,setdata]=useState([])
   const [kind,setkind]=useState([])
   const [tag,settag]=useState([])
-useEffect(()=>{
-client
+
+  const bb =(tagIds) =>{
+    console.log('ligezhenshuai')
+    console.log(tagIds)
+    client
 .client
   .query({
     query: gql`
@@ -27,7 +31,7 @@ client
       findSeriesByPagination(
         kind: "VIDEO"
         skip: 0
-        tagIds: []
+        tagIds: [${tagIds}]
         take: 10
       ) {
         totalCount
@@ -50,10 +54,47 @@ client
     `,
   })
   .then((result) => {
+    console.log(result.data.findSeriesByPagination,'result2222')
     setdata(result.data.findSeriesByPagination.series)
-    console.log(result,'result')
   });
-  },[])
+  }
+useEffect(()=>{bb("")},[])
+// useEffect(()=>{
+//   client
+//   .client
+//     .query({
+//       query: gql`
+//       query {
+//         findSeriesByPagination(
+//           kind: "VIDEO"
+//           skip: 0
+//           tagIds: []
+//           take: 10
+//         ) {
+//           totalCount
+//           series {
+//             id
+//             title
+//             likeCount
+//             followCount
+//             thumbnail
+//             description
+//             tags{
+//               id
+//               tag{
+//                 name
+//               }
+//             }
+//           }
+//         }
+//       }
+//       `,
+//     })
+//     .then((result) => {
+//       setdata(result.data.findSeriesByPagination.series)
+//       console.log(result,'result')
+//     });
+//   },[])
 
   useEffect(()=>{
     client
@@ -72,14 +113,13 @@ client
       })
       .then((result) => {
         setkind(result.data.getAllTags)
-        // console.log(result.data.getAllTags,'result')
       });
       },[])
 
 
   return (
     <>
-      <InfoContext.Provider value={{data,kind}}>
+      <InfoContext.Provider value={{data,kind,bb}}>
         <div>
             <div className='w-screen bg-mainblack h-auto'>
           <div className='w-11/12 m-0 m-auto'>
