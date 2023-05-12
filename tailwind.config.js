@@ -31,6 +31,10 @@ module.exports = {
     }),
     boxShadow:{
       'card':'-3px 7px 12px rgba(243, 86, 86, 0.23)'
+    },
+    screens:{
+      '1920':'1920px',
+      '1440':'1440px',
     }
   },
   plugins: [],

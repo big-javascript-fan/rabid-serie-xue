@@ -13,7 +13,7 @@ export default function Newest() {
         <hgroup className='text-white text-4xl h-36 flex items-center font-blod border-b-2 border-new'>NEWEST SERIES</hgroup>
         <div className='py-6 text-white flex flex-wrap'>
         {data.map((item,i) => (
-            <div className='box-border w-1/5 mr-20 mb-8 shadow-card rounded-3xl overflow-hidden' key={i}>
+            <div className='box-border 1920:w-1/5 1440:w-1/4 mr-20 mb-8 shadow-card rounded-3xl overflow-hidden' key={i}>
                 <div className='relative'>
                     <img src={item.thumbnail} alt="" className='w-full h-96'/>
                     <img src={tag} alt="" className='absolute right-6 top-6'/>
@@ -24,8 +24,9 @@ export default function Newest() {
                         <section>section1</section>
                         <section>April17,2002</section>
                     </div>
-                    <div className='flex'>
-                        <button className='leading-8 rounded-2xl bg-mainblack px-4'>travel</button>
+                    <div className='flex mt-4'>
+                            <button className='leading-8 rounded-2xl mr-4 bg-travel px-4'>travel</button>
+                            <button className='leading-8 rounded-2xl mr-4 bg-true px-4'>True Crime</button>
                     </div>
                     <p className='py-4 border-b-2'>{item.description}</p>
                     <div className='flex'>

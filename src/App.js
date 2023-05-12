@@ -9,12 +9,15 @@ import { gql } from '@apollo/client';
 
 const initialValue = {
   data: [],
+  kind:[]
 }
 export const InfoContext = createContext(initialValue)
 
 
 function App(client) {
   const [data,setdata]=useState([])
+  const [kind,setkind]=useState([])
+  const [tag,settag]=useState([])
 useEffect(()=>{
 client
 .client
@@ -35,6 +38,12 @@ client
           followCount
           thumbnail
           description
+          tags{
+            id
+            tag{
+              name
+            }
+          }
         }
       }
     }
@@ -42,14 +51,35 @@ client
   })
   .then((result) => {
     setdata(result.data.findSeriesByPagination.series)
-    console.log(result.data.findSeriesByPagination.series)
+    console.log(result,'result')
   });
-
   },[])
+
+  useEffect(()=>{
+    client
+    .client
+      .query({
+        query: gql`
+        query getTagList {
+          getAllTags {
+          id
+          name
+          createdAt
+          updatedAt
+          }
+          },
+        `,
+      })
+      .then((result) => {
+        setkind(result.data.getAllTags)
+        // console.log(result.data.getAllTags,'result')
+      });
+      },[])
+
 
   return (
     <>
-      <InfoContext.Provider value={{data}}>
+      <InfoContext.Provider value={{data,kind}}>
         <div>
             <div className='w-screen bg-mainblack h-auto'>
           <div className='w-11/12 m-0 m-auto'>

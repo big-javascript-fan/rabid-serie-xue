@@ -13,7 +13,7 @@ import Ellipse from "../../images/Ellipse.png"
 
 export default function Head() {
     return <div className="box-border h-28 border-b-4 flex items-center justify-between">
-        <div className="mr-72">
+        <div className="">
             <img src={logo} alt="logo" />
         </div>
         <div className="flex-1 flex justify-aroud text-color">
